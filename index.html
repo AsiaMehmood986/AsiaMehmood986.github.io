@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07060f;--card:rgba(20,17,38,.78);--line:#2b2650;--text:#ece9ff;--mute:#a7a3c8;--acc:#a78bfa;--acc2:#22d3ee;--r:16px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{position:relative;background:radial-gradient(1200px 600px at 80% -10%,#2a1b5e55,transparent),radial-gradient(900px 500px at -10% 40%,#0c4a6e44,transparent),var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15}
+a{color:inherit}
+#bg{position:fixed;inset:0;z-index:-1;width:100%;height:100%}
+.grad{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+section{padding:80px 0}
+h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:10px}
+.sub{color:var(--mute);margin-bottom:36px}
+nav{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:62px}
+
+.logo{font-family:Inter,system-ui,sans-serif;font-size:1.1rem;font-weight:600;letter-spacing:-.01em;color:var(--text);text-decoration:none;padding-bottom:3px;background:linear-gradient(90deg,var(--acc),var(--acc2)) left bottom/0 2px no-repeat;transition:background-size .25s}
+.logo:hover{background-size:100% 2px}
+nav ul{display:flex;gap:22px;list-style:none;font-size:.92rem;color:var(--mute)}
+nav a{text-decoration:none}nav a:hover{color:var(--text)}
+.btn{display:inline-block;padding:11px 22px;border-radius:999px;background:linear-gradient(90deg,var(--acc),var(--acc2));color:#07060f;font-weight:500;text-decoration:none;border:0;cursor:pointer;font:inherit;font-weight:500}
+.btn.ghost{background:none;color:var(--text);border:1px solid var(--line)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.hero{min-height:84vh;display:grid;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,7vw,4.8rem);margin-bottom:16px}
+.hero p{color:var(--mute);font-size:1.15rem;margin-bottom:28px;max-width:46ch}
+.photo{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;border:3px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(135deg,var(--acc),var(--acc2)) border-box;max-width:380px;justify-self:center}
+.about{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start}
+.about p{color:var(--mute);margin-bottom:14px}
+.social{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.social a{padding:7px 16px;border:1px solid var(--line);border-radius:999px;font-size:.9rem;text-decoration:none}
+.social a:hover{border-color:var(--acc)}
+.timeline{border-left:2px solid var(--line);padding-left:26px;display:grid;gap:30px}
+.tl{position:relative}
+.tl::before{content:"";position:absolute;left:-33px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--acc2);box-shadow:0 0 12px var(--acc2)}
+.tl small{color:var(--acc)}
+.tl p{color:var(--mute);max-width:70ch}
+.skills{display:grid;gap:26px}
+.skills h3{font-size:.95rem;color:var(--mute);margin-bottom:10px;font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:flex;align-items:center;gap:8px;padding:7px 14px;background:var(--card);border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.chip img{width:20px;height:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+.card{backdrop-filter:blur(8px);transition:transform .2s,border-color .2s;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.card img.shot{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--line)}
+.card .body{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card p{color:var(--mute);font-size:.95rem}
+.card:hover{transform:translateY(-4px);border-color:var(--acc)}
+.card .meta{font-size:.8rem;color:var(--mute)}
+.card .links{margin-top:auto;display:flex;gap:10px;padding-top:6px}
+.card .links a{font-size:.88rem;padding:6px 14px;border:1px solid var(--line);border-radius:999px;text-decoration:none}
+.card .links a:hover{border-color:var(--acc)}
+.card.soon{border-style:dashed}
+.badge{font-size:.78rem;color:var(--acc)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:26px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.stat b{display:block;font:700 2rem 'Space Grotesk',sans-serif}
+.stat span{color:var(--mute);font-size:.9rem}
+.gh{display:grid;grid-template-columns:1.4fr 1fr;gap:22px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.panel h3{margin-bottom:14px}
+.act{list-style:none;display:grid;gap:10px;font-size:.92rem;color:var(--mute)}
+.act b{color:var(--text);font-weight:500}
+.bar{margin-bottom:12px;font-size:.88rem}
+.bar i{display:block;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--acc),var(--acc2));margin-top:5px}
+.contact{display:grid;grid-template-columns:1fr 1.3fr;gap:40px}
+.info p{color:var(--mute);margin-bottom:16px}
+.info b{display:block;color:var(--text);font-weight:500}
+form{display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{font-size:.88rem;color:var(--mute);display:grid;gap:6px}
+input,select,textarea{font:inherit;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;width:100%}
+textarea{min-height:130px;resize:vertical}
+#msg{font-size:.9rem;min-height:1.4em}
+footer{border-top:1px solid var(--line);padding:34px 0;text-align:center;color:var(--mute)}
+footer a{color:var(--acc)}
+@media(max-width:800px){.hero .wrap,.about,.contact,.gh{grid-template-columns:1fr}.two{grid-template-columns:1fr}nav ul{display:none}.photo{max-width:260px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<nav><div class="wrap"><a class="logo" href="#top" id="logo"></a>
+<ul><li><a href="#about">About</a></li><li><a href="#journey">Journey</a></li><li><a href="#skills">Skills</a></li><li><a href="#github">GitHub</a></li><li><a href="#blog">Blog</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+<div><h1 id="heroTitle"></h1><p id="tagline"></p><a class="btn" href="#projects">View Projects</a></div>
+<img class="photo" id="photo" alt="Profile photo">
+</div></header>
+
+<section id="about"><div class="wrap about">
+<div><h2>About me</h2><div class="social" id="social"></div><a class="btn ghost" id="resume" download>Download resume</a></div>
+<div id="aboutText"></div>
+</div></section>
+
+<section id="journey"><div class="wrap"><h2>My journey</h2><p class="sub">Experience and education.</p><div class="timeline" id="timeline"></div></div></section>
+
+<section id="skills"><div class="wrap"><h2>Skills</h2><p class="sub">Tools and technologies I work with.</p><div class="skills" id="skillList"></div></div></section>
+
+<section id="github"><div class="wrap"><h2>GitHub activity</h2><p class="sub">Live from my GitHub profile.</p>
+<div class="stats">
+<div class="stat"><b id="sRepos">-</b><span>Public repositories</span></div>
+<div class="stat"><b id="sStars">-</b><span>Total stars</span></div>
+<div class="stat"><b id="sFollow">-</b><span>Followers</span></div>
+<div class="stat"><b id="sCommits">-</b><span>Recent commits</span></div></div>
+<div class="gh"><div class="panel"><h3>Recent activity</h3><ul class="act" id="activity"><li>Loading activity...</li></ul></div>
+<div class="panel"><h3>Most used languages</h3><div id="langs">Loading...</div></div></div></div></section>
+
+<section id="blog"><div class="wrap"><h2>Latest blog posts</h2><p class="sub">Thoughts, tutorials and lessons from my work.</p><div class="grid" id="posts"></div></div></section>
+
+<section id="projects"><div class="wrap"><h2>Projects</h2><p class="sub">Some of the things I've built.</p><div class="grid" id="projectList"></div></div></section>
+
+<section id="upcoming"><div class="wrap"><h2>Upcoming projects</h2><p class="sub">Ideas I'm working on next.</p><div class="grid" id="upList"></div></div></section>
+
+<section id="contact"><div class="wrap"><h2>Get in touch</h2><p class="sub">Have a project in mind or just want to say hello?</p>
+<div class="contact">
+<div class="info"><p id="contactIntro"></p><p><b>Email</b><span id="cEmail"></span></p><p><b>Location</b><span id="cLoc"></span></p><p><b>Response time</b>Within 24 hours</p></div>
+<form id="form" novalidate>
+<div class="two"><label>First name *<input name="first" required></label><label>Last name *<input name="last" required></label></div>
+<label>Email *<input type="email" name="email" required></label>
+<label>Subject *<select name="subject" required><option value="">Select a subject</option><option>Project inquiry</option><option>Job opportunity</option><option>Collaboration</option><option>General message</option></select></label>
+<label>Message *<textarea name="message" required></textarea></label>
+<button class="btn" type="submit">Send message</button><div id="msg" role="status"></div>
+</form></div></div></section>
+
+<footer><div class="wrap"><p>Let's build something good together.</p><p><a id="fMail"></a></p><p style="margin-top:14px;font-size:.85rem" id="copy"></p></div></footer>
+
+<script>
+/* ============ EDIT THIS BLOCK ONLY ============ */
+const C={
+ name:"Asia Mehmood",
+ githubUser:"AsiaMehmood986",
+ tagline:"Software Engineer and Automation Developer building RPA and Python solutions that cut processing time by up to 90%, now moving into agentic AI.",
+ photo:"https://avatars.githubusercontent.com/u/348281026?v=4",
+ resume:"assets/resume.pdf",
+ email:"asiamehmood986k@gmail.com",
+ location:"Lahore, Pakistan",
+ formEndpoint:"",
+ about:[
+  "I'm a results-focused Software Engineer and Automation Developer with a BS in Computer Science from International Islamic University Islamabad (CGPA 3.53).",
+  "I design and deploy RPA and Python automation for large teams at Huawei and Jazz, using Automation Anywhere, Microsoft Power Automate and Selenium. My work has cut processing times from hours to minutes.",
+  "I'm now building with agentic AI, LLMs, LangChain and retrieval-augmented generation (RAG). Languages: English and Pashto (professional working), Urdu (native)."],
+ social:[["GitHub","https://github.com/AsiaMehmood986"],["LinkedIn","https://www.linkedin.com/in/your-profile"],["Email","mailto:asiamehmood986k@gmail.com"]],
+ journey:[
+  {t:"Agentic AI Course Participant, UET Lahore",d:"2026",p:"Studied LLM-powered applications, prompt design, structured outputs and multi-step workflows. Built a RAG exam paper generator and an agentic job-matching system."},
+  {t:"Expert RPA Engineer, Jazz",d:"Sep 2024 - Dec 2024 | Islamabad",p:"Built and deployed RPA workflows for finance and customer experience, cutting processing time by about 90% and reducing manual errors. Worked with cross-functional teams to prioritize automation opportunities."},
+  {t:"Automation Developer, Huawei",d:"Dec 2022 - Sep 2024 | Islamabad",p:"Built RPA and Python automation solutions, gathered requirements and led documentation. Automated Google workflows with Selenium for web scraping, form submissions and data extraction."},
+  {t:".NET Core Intern, AKSA-SDS",d:"Oct 2022 - Dec 2022 | Islamabad",p:"Used C# and MVC patterns with MS SQL for coding and database management, and collaborated on code quality."},
+  {t:"Admin Coordinator, TrueFix",d:"Aug 2022 - Oct 2022 | Islamabad",p:"Scheduled meetings, managed documents and employee records, handled client inquiries and prepared reports."},
+  {t:"BS Computer Science",d:"International Islamic University Islamabad (2018 - 2022)",p:"CGPA 3.53. Courses included Programming Fundamentals, Introduction to Database, Professional Practices and Probability & Statistics."}],
+ skills:{
+  "Automation & RPA":[["Python","python"],["Selenium","selenium"],["Automation Anywhere",""],["Power Automate",""],["Web Scraping",""],["Email Automation (smtplib)",""]],
+  "Data & Libraries":[["Pandas","pandas"],["NumPy","numpy"],["Openpyxl",""],["Xlwings",""],["BeautifulSoup",""],["python-docx",""]],
+  "AI & LLM":[["Agentic AI",""],["LLMs (Groq)",""],["LangChain",""],["RAG",""],["Vector Stores",""],["HuggingFace Embeddings",""],["Prompt Engineering",""]],
+  "Development":[["C#","csharp"],[".NET Core","dotnetcore"],["MVC",""],["MS SQL","microsoftsqlserver"],["PHP","php"],["Streamlit","streamlit"]]},
+ posts:[],
+ postsAll:"",
+ projects:[
+  {t:"AI Job Matching & CV Tailoring Agent",icon:"🎯",h:265,p:"Agentic AI system that parses a CV to extract skills and interests, searches LinkedIn, Remotive, We Work Remotely and other platforms, ranks jobs by fit, and emails the matches with a tailored CV for each.",tags:["Agentic AI","LangChain","Python"],live:"",repo:"https://github.com/AsiaMehmood986/job-agent-public"},
+  {t:"LinkedIn Job Agent",icon:"💼",h:200,p:"Python agent that searches LinkedIn for roles matching your profile and shortlists the best fits automatically.",tags:["Python","Automation","Web scraping"],live:"",repo:"https://github.com/AsiaMehmood986/linkedin_job_agent"},
+  {t:"AI Exam Paper Generator",icon:"📝",h:300,p:"Streamlit app that turns a textbook PDF into a printable Word exam paper with an answer key, by chapter, page range or topic. Generates MCQs, short and long questions.",tags:["RAG","LangChain","Groq","Streamlit"],live:"",repo:"https://github.com/AsiaMehmood986/app-paper-generator"},
+  {t:"UAE RPA from BOQ Automation",icon:"🤖",h:170,p:"Automated customer-specific BOQ generation for a UAE client: downloaded and consolidated DU data and BOQ documents from portals, uploaded BOQs and synced data to the database. About 8-10 minutes for 10 DUIDs.",tags:["RPA","Automation Anywhere","Python"],live:"",repo:""},
+  {t:"Live Network Monitoring Dashboard",icon:"📡",h:230,p:"Live network monitoring with real-time alerts for rollbacks, late completions and late starts, plus automated email reports on errors, status and violations.",tags:["RPA","Python","Email automation"],live:"",repo:""},
+  {t:"Service Release & Drafting Tool",icon:"⚡",h:40,p:"Automated data gathering and link/DU-ID generation by site type for Ethiopia, cutting processing time from 1 hour to 3 minutes.",tags:["RPA","Python"],live:"",repo:""},
+  {t:"HomeChef Food Ordering System",icon:"🍲",h:20,p:"PHP ordering platform where home chefs showcase and sell their food, with personalized profiles and order management.",tags:["PHP","MySQL"],live:"",repo:""}],
+ upcoming:[]
+};
+/* ============================================== */
+const $=id=>document.getElementById(id),E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.title=C.name+" | Portfolio";
+$("logo").textContent=C.name;
+$("heroTitle").innerHTML="Hi, I'm <span class=\"grad\">"+E(C.name.split(" ")[0])+"</span>";
+$("tagline").textContent=C.tagline;
+$("photo").src=C.photo;
+$("photo").onerror=function(){this.style.visibility="hidden"};
+$("aboutText").innerHTML=C.about.map(p=>"<p>"+E(p)+"</p>").join("");
+$("social").innerHTML=C.social.map(s=>`<a href="${E(s[1])}" target="_blank" rel="noopener">${E(s[0])}</a>`).join("");
+$("resume").href=C.resume;
+$("timeline").innerHTML=C.journey.map(j=>`<div class="tl"><h3>${E(j.t)}</h3><small>${E(j.d)}</small><p>${E(j.p)}</p></div>`).join("");
+const ico=k=>`https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/${k}/${k}-original.svg`;
+$("skillList").innerHTML=Object.entries(C.skills).map(([g,a])=>`<div><h3>${E(g)}</h3><div class="chips">${a.map(s=>`<span class="chip"><img src="${ico(s[1])}" alt="" onerror="this.remove()">${E(s[0])}</span>`).join("")}</div></div>`).join("");
+const cover=(p)=>{const h=p.h||250,t=E(p.t).slice(0,34);const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${h},75%,32%)"/><stop offset="1" stop-color="hsl(${(h+60)%360},80%,16%)"/></linearGradient><radialGradient id="r" cx=".8" cy=".1" r=".7"><stop offset="0" stop-color="hsl(${(h+30)%360},95%,65%)" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs><rect width="640" height="360" fill="url(#g)"/><rect width="640" height="360" fill="url(#r)"/><g fill="none" stroke="#fff" stroke-opacity=".12"><circle cx="520" cy="80" r="150"/><circle cx="520" cy="80" r="100"/><circle cx="520" cy="80" r="50"/><path d="M0 300h640M0 250h640M0 200h640"/></g><rect x="32" y="262" width="${Math.min(576,t.length*14+40)}" height="46" rx="23" fill="#000" fill-opacity=".35"/><text x="56" y="292" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#fff">${t}</text><text x="48" y="150" font-size="96">${p.icon||"💻"}</text></svg>`;return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg)};
+const img=s=>s?`<img class="shot" src="${E(s)}" alt="" loading="lazy">`:`<div class="shot" style="aspect-ratio:16/9;background:var(--line)"></div>`;
+$("posts").innerHTML=C.posts.map(p=>`<article class="card">${img(p.img)}<div class="body"><span class="meta">${E(p.d)}</span><h3>${E(p.t)}</h3><p>${E(p.p)}</p><div class="links"><a href="${E(p.url)}" target="_blank" rel="noopener">Read more</a></div></div></article>`).join("")+`<article class="card"><div class="body" style="justify-content:center;align-items:flex-start"><h3>More posts</h3><div class="links"><a href="${E(C.postsAll)}" target="_blank" rel="noopener">View all posts</a></div></div></article>`;
+$("projectList").innerHTML=C.projects.map(p=>`<article class="card">${img(p.img||cover(p))}<div class="body"><h3>${E(p.t)}</h3><p>${E(p.p)}</p><div class="chips">${p.tags.map(t=>`<span class="badge">${E(t)}</span>`).join("")}</div><div class="links">${p.live?`<a href="${E(p.live)}" target="_blank" rel="noopener">Live demo</a>`:""}${p.repo?`<a href="${E(p.repo)}" target="_blank" rel="noopener">GitHub</a>`:""}</div></div></article>`).join("");
+$("upList").innerHTML=C.upcoming.map(p=>`<article class="card soon"><div class="body"><h3>${E(p.t)}</h3><p>${E(p.p)}</p><span class="badge">Coming soon</span></div></article>`).join("");
+$("contactIntro").textContent="I'm open to new opportunities, interesting projects, or a chat about technology.";
+$("cEmail").textContent=C.email;$("cLoc").textContent=C.location;
+$("fMail").textContent=C.email;$("fMail").href="mailto:"+C.email;
+$("copy").textContent="© "+new Date().getFullYear()+" "+C.name;
+
+if(!C.posts.length){$("blog").remove();document.querySelector('nav a[href="#blog"]').parentNode.remove()}
+if(!C.upcoming.length){$("upcoming").remove()}
+/* particle background */
+(()=>{const c=$("bg"),x=c.getContext("2d");if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+let w,h,P=[];const R=()=>{w=c.width=innerWidth;h=c.height=innerHeight;P=Array.from({length:Math.min(70,Math.floor(w*h/22000))},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}))};
+R();addEventListener("resize",R);
+(function f(){x.clearRect(0,0,w,h);P.forEach((p,i)=>{p.x=(p.x+p.vx+w)%w;p.y=(p.y+p.vy+h)%h;x.fillStyle="rgba(167,139,250,.7)";x.beginPath();x.arc(p.x,p.y,1.6,0,7);x.fill();
+for(let j=i+1;j<P.length;j++){const q=P[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<130){x.strokeStyle=`rgba(34,211,238,${.18*(1-d/130)})`;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}});requestAnimationFrame(f)})()})();
+/* GitHub live data */
+(async()=>{
+ const u=C.githubUser;
+ try{
+  const [me,repos,ev]=await Promise.all([fetch(`https://api.github.com/users/${u}`).then(r=>r.json()),fetch(`https://api.github.com/users/${u}/repos?per_page=100&sort=updated`).then(r=>r.json()),fetch(`https://api.github.com/users/${u}/events/public?per_page=30`).then(r=>r.json())]);
+  if(!me.login)throw 0;
+  $("sRepos").textContent=me.public_repos;$("sFollow").textContent=me.followers;
+  $("sStars").textContent=repos.reduce((n,r)=>n+r.stargazers_count,0);
+  const pushes=ev.filter(e=>e.type==="PushEvent");
+  $("sCommits").textContent=pushes.reduce((n,e)=>n+(e.payload.size||0),0);
+  $("activity").innerHTML=ev.slice(0,6).map(e=>`<li><b>${E(e.type.replace("Event",""))}</b> in ${E(e.repo.name)}</li>`).join("")||"<li>No recent public activity.</li>";
+  const L={};repos.forEach(r=>{if(r.language)L[r.language]=(L[r.language]||0)+1});
+  const tot=Object.values(L).reduce((a,b)=>a+b,0)||1;
+  $("langs").innerHTML=Object.entries(L).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([k,v])=>`<div class="bar">${E(k)} ${Math.round(v/tot*100)}%<i style="width:${v/tot*100}%"></i></div>`).join("");
+ }catch(e){
+  $("sRepos").textContent="3";$("sStars").textContent="0";$("sFollow").textContent="0";$("sCommits").textContent="-";
+  $("activity").innerHTML=["job-agent-public","linkedin_job_agent","app-paper-generator"].map(n=>`<li><b>Repository</b> <a href="https://github.com/${u}/${n}" target="_blank" rel="noopener">${n}</a></li>`).join("");
+  $("langs").innerHTML='<div class="bar">Python 100%<i style="width:100%"></i></div>';
+ }
+})();
+
+/* Contact form */
+$("form").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const f=e.target,d=Object.fromEntries(new FormData(f)),m=$("msg");
+ if(!d.first||!d.last||!/^\S+@\S+\.\S+$/.test(d.email||"")||!d.subject){m.textContent="Fill in every required field with a valid email.";return}
+ if((d.message||"").trim().split(/\s+/).length<3||d.message.length<10){m.textContent="Write a message of at least 3 words and 10 characters.";return}
+ if(C.formEndpoint){
+  m.textContent="Sending...";
+  try{const r=await fetch(C.formEndpoint,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(d)});
+   if(!r.ok)throw 0;m.textContent="Message sent. I'll reply within 24 hours.";f.reset()}catch(_){m.textContent="Couldn't send. Email me directly at "+C.email}
+ }else{
+  location.href=`mailto:${C.email}?subject=${encodeURIComponent(d.subject)}&body=${encodeURIComponent(d.message+"\n\n"+d.first+" "+d.last+" ("+d.email+")")}`;
+ }
+});
+</script>
+</body>
+</html>
