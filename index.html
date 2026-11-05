@@ -33,7 +33,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .hero .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
 .hero h1{font-size:clamp(2.6rem,7vw,4.8rem);margin-bottom:16px}
 .hero p{color:var(--mute);font-size:1.15rem;margin-bottom:28px;max-width:46ch}
-.photo{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;border:3px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(135deg,var(--acc),var(--acc2)) border-box;max-width:380px;justify-self:center}
+.photo{width:100%;aspect-ratio:1;object-fit:cover;border-radius:28px;border:3px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(135deg,var(--acc),var(--acc2)) border-box;max-width:380px;justify-self:center}
 .about{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start}
 .about p{color:var(--mute);margin-bottom:14px}
 .social{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
@@ -140,7 +140,8 @@ const C={
  name:"Asia Mehmood",
  githubUser:"AsiaMehmood986",
  tagline:"Software Engineer and Automation Developer building RPA and Python solutions that cut processing time by up to 90%, now moving into agentic AI.",
- photo:"https://avatars.githubusercontent.com/u/348281026?v=4",
+ photo:"",
+ heroArt:"code",             // person | laptop | robot | code
  resume:"assets/resume.pdf",
  email:"asiamehmood986k@gmail.com",
  location:"Lahore, Pakistan",
@@ -149,7 +150,7 @@ const C={
   "I'm a results-focused Software Engineer and Automation Developer with a BS in Computer Science from International Islamic University Islamabad (CGPA 3.53).",
   "I design and deploy RPA and Python automation for large teams at Huawei and Jazz, using Automation Anywhere, Microsoft Power Automate and Selenium. My work has cut processing times from hours to minutes.",
   "I'm now building with agentic AI, LLMs, LangChain and retrieval-augmented generation (RAG). Languages: English and Pashto (professional working), Urdu (native)."],
- social:[["GitHub","https://github.com/AsiaMehmood986"],["LinkedIn","https://www.linkedin.com/in/asia-mehmood/"],["Email","mailto:asiamehmood986k@gmail.com"]],
+ social:[["GitHub","https://github.com/AsiaMehmood986"],["LinkedIn","https://www.linkedin.com/in/your-profile"],["Email","mailto:asiamehmood986k@gmail.com"]],
  journey:[
   {t:"Agentic AI Course Participant, UET Lahore",d:"2026",p:"Studied LLM-powered applications, prompt design, structured outputs and multi-step workflows. Built a RAG exam paper generator and an agentic job-matching system."},
   {t:"Expert RPA Engineer, Jazz",d:"Sep 2024 - Dec 2024 | Islamabad",p:"Built and deployed RPA workflows for finance and customer experience, cutting processing time by about 90% and reducing manual errors. Worked with cross-functional teams to prioritize automation opportunities."},
@@ -180,7 +181,18 @@ document.title=C.name+" | Portfolio";
 $("logo").textContent=C.name;
 $("heroTitle").innerHTML="Hi, I'm <span class=\"grad\">"+E(C.name.split(" ")[0])+"</span>";
 $("tagline").textContent=C.tagline;
-$("photo").src=C.photo;
+const W=b=>"data:image/svg+xml;charset=utf-8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1442"/><stop offset="1" stop-color="#07121f"/></linearGradient><linearGradient id="tx" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><rect width="400" height="400" fill="url(#bg)"/>${b}</svg>`);
+const ART={
+ person:()=>W(`<circle cx="320" cy="80" r="46" fill="#a78bfa" opacity=".25"/><circle cx="70" cy="320" r="30" fill="#22d3ee" opacity=".2"/><path d="M70 400c0-72 56-112 130-112s130 40 130 112z" fill="url(#tx)"/><rect x="176" y="248" width="48" height="58" rx="20" fill="#e9b996"/><path d="M110 210c-6-90 36-130 90-130s96 40 90 130c-2 40 8 70 20 96-30 4-52-6-64-28l-92 0c-12 22-34 32-64 28 12-26 22-56 20-96z" fill="#2a1f3d"/><ellipse cx="200" cy="205" rx="68" ry="80" fill="#f1c9a5"/><path d="M132 190c10-60 50-84 92-76 30 6 48 30 44 76-30-34-70-48-136 0z" fill="#2a1f3d"/><ellipse cx="174" cy="208" rx="7" ry="9" fill="#2a1f3d"/><ellipse cx="226" cy="208" rx="7" ry="9" fill="#2a1f3d"/><path d="M162 190q12-8 24 0M214 190q12-8 24 0" stroke="#2a1f3d" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M180 238q20 16 40 0" stroke="#b5584a" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="152" cy="232" r="10" fill="#f08a8a" opacity=".35"/><circle cx="248" cy="232" r="10" fill="#f08a8a" opacity=".35"/><path d="M104 214a96 96 0 0 1 192 0" stroke="#22d3ee" stroke-width="10" fill="none" stroke-linecap="round"/><rect x="92" y="204" width="22" height="44" rx="10" fill="#22d3ee"/><rect x="286" y="204" width="22" height="44" rx="10" fill="#22d3ee"/>`),
+ laptop:()=>W(`<circle cx="200" cy="170" r="130" fill="#a78bfa" opacity=".12"/><rect x="82" y="96" width="236" height="160" rx="14" fill="#0d1020" stroke="url(#tx)" stroke-width="4"/><g stroke-linecap="round" stroke-width="8"><path d="M108 128h70" stroke="#a78bfa"/><path d="M124 152h110" stroke="#22d3ee"/><path d="M124 176h60" stroke="#f0abfc"/><path d="M108 200h120" stroke="#a78bfa"/><path d="M124 224h84" stroke="#22d3ee"/></g><path d="M52 264h296l-22 30H74z" fill="url(#tx)"/><rect x="170" y="268" width="60" height="6" rx="3" fill="#07060f" opacity=".5"/><g font-family="Courier New,monospace" font-weight="700" fill="#22d3ee"><text x="322" y="90" font-size="34" fill="#a78bfa">&lt;/&gt;</text><text x="40" y="82" font-size="40">{ }</text><text x="316" y="210" font-size="30" fill="#f0abfc">py</text></g><circle cx="60" cy="190" r="6" fill="#a78bfa"/><circle cx="346" cy="150" r="5" fill="#22d3ee"/><text x="200" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#a7a3c8">Python \u2022 RPA \u2022 AI</text>`),
+ robot:()=>W(`<circle cx="200" cy="190" r="140" fill="#22d3ee" opacity=".1"/><path d="M200 70v34" stroke="url(#tx)" stroke-width="8" stroke-linecap="round"/><circle cx="200" cy="64" r="12" fill="#22d3ee"/><rect x="108" y="104" width="184" height="150" rx="40" fill="#151236" stroke="url(#tx)" stroke-width="5"/><rect x="86" y="154" width="22" height="50" rx="10" fill="#a78bfa"/><rect x="292" y="154" width="22" height="50" rx="10" fill="#a78bfa"/><rect x="134" y="140" width="132" height="64" rx="28" fill="#07060f"/><circle cx="172" cy="172" r="15" fill="#22d3ee"/><circle cx="228" cy="172" r="15" fill="#22d3ee"/><circle cx="177" cy="167" r="5" fill="#fff"/><circle cx="233" cy="167" r="5" fill="#fff"/><path d="M164 226h72" stroke="#a78bfa" stroke-width="7" stroke-linecap="round" stroke-dasharray="10 8"/><rect x="176" y="254" width="48" height="22" fill="#a78bfa" opacity=".6"/><path d="M110 400c0-64 40-120 90-120s90 56 90 120z" fill="url(#tx)"/><circle cx="200" cy="334" r="14" fill="#07060f" opacity=".45"/>`),
+ code:()=>{const n=C.name.split(" ")[0].toLowerCase();return W(`<rect x="36" y="72" width="328" height="256" rx="18" fill="#0d1020" stroke="url(#tx)" stroke-width="3"/><circle cx="64" cy="98" r="7" fill="#f87171"/><circle cx="86" cy="98" r="7" fill="#fbbf24"/><circle cx="108" cy="98" r="7" fill="#34d399"/><g font-family="Courier New,monospace" font-size="19"><text x="58" y="144" fill="#a78bfa">const <tspan fill="#22d3ee">${E(n)}</tspan> <tspan fill="#ece9ff">= {</tspan></text><text x="78" y="176" fill="#ece9ff">role: <tspan fill="#86efac">"Engineer"</tspan>,</text><text x="78" y="208" fill="#ece9ff">focus: <tspan fill="#86efac">"RPA"</tspan>,</text><text x="78" y="240" fill="#ece9ff">next: <tspan fill="#86efac">"Agentic AI"</tspan>,</text><text x="58" y="272" fill="#ece9ff">}</text><text x="58" y="304" fill="#a7a3c8">// open to work</text></g>`)}
+};
+const order=Object.keys(ART);let cur=Math.max(0,order.indexOf(C.heroArt));
+const ph=$("photo");
+const setArt=()=>{ph.src=C.photo||ART[order[cur]]()};
+setArt();
+if(false){ph.style.cursor="pointer";ph.title="Click to change picture";ph.tabIndex=0;const nx=()=>{cur=(cur+1)%order.length;setArt()};ph.onclick=nx;ph.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();nx()}}}
 $("photo").onerror=function(){this.style.visibility="hidden"};
 $("aboutText").innerHTML=C.about.map(p=>"<p>"+E(p)+"</p>").join("");
 $("social").innerHTML=C.social.map(s=>`<a href="${E(s[1])}" target="_blank" rel="noopener">${E(s[0])}</a>`).join("");
